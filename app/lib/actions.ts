@@ -75,13 +75,4 @@ export async function deleteLink(
   }
 }
 
-export async function getLinks() {
-  const { userId } = await auth()
-  if (!userId) return []
 
-  return db
-    .select()
-    .from(urlLinks)
-    .where(eq(urlLinks.userId, userId))
-    .orderBy(urlLinks.createdAt)
-}

@@ -1,5 +1,5 @@
 import { headers } from 'next/headers'
-import { getLinks } from '@/app/lib/actions'
+import { getLinks } from '@/data/links'
 import CreateLinkForm from '@/components/CreateLinkForm'
 import LinkTable from '@/components/LinkTable'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'

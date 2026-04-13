@@ -79,7 +79,7 @@ export default function LinkTable({ links, baseUrl }: LinkTableProps) {
               </Badge>
             </TableCell>
             <TableCell className="text-sm text-muted-foreground">
-              {new Date(link.createdAt).toLocaleDateString()}
+              {new Date(link.createdAt).toLocaleDateString('en-CA')}
             </TableCell>
             <TableCell className="text-right">
               <div className="flex items-center justify-end gap-1">
