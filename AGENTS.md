@@ -6,15 +6,30 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 # Agent Instructions
 
-This file is the entry point for LLM coding agents working in this repository. Before writing or modifying any code, read the relevant guide(s) from the `/docs` directory listed below.
+> [!CAUTION]
+> **STOP. DO NOT WRITE A SINGLE LINE OF CODE UNTIL YOU HAVE READ THE RELEVANT `/docs` FILE(S) LISTED BELOW.**
+> Skipping this step will cause broken, incorrect, or insecure output. There are no exceptions.
+> Docs are in `docs/auth.md` and `docs/ui-components.md`.
 
-For detailed guidelines on specific topics, refer to the modular documentation in the `/docs` directory. ALWAYS refer to the relevant .md file BEFORE generating any code:
+This file is the entry point for LLM coding agents working in this repository.
+
+For detailed guidelines on specific topics, refer to the modular documentation in the `/docs` directory. **Reading the relevant `.md` file(s) BEFORE generating ANY code is mandatory — not optional, not skippable.** Every topic area has a dedicated guide; use it:
+
+> **Rule:** If your task touches a topic in the table below, you MUST open and read the corresponding file in full before writing or modifying any code.
+
+> [!IMPORTANT]
+> **MANDATORY REQUIREMENT:** Reading the relevant `/docs` file(s) is not a suggestion — it is a hard prerequisite. Any agent that skips this step and generates code directly is violating these instructions. The docs exist because this project uses versions and conventions that differ from general training data. They are the single source of truth.
 
 ## Docs Index
+
+> **YOU MUST READ THE RELEVANT FILE(S) BELOW BEFORE WRITING ANY CODE.** These docs contain project-specific APIs, conventions, and breaking changes that differ from general training data. Failure to read them will result in incorrect code.
 
 | Topic | File | When to read |
 |---|---|---|
 | Authentication (Clerk v7) | [docs/auth.md](docs/auth.md) | Any time you work with auth, protected routes, sign-in/sign-up UI, or user identity |
+| UI Components (shadcn/ui) | [docs/ui-components.md](docs/ui-components.md) | Any time you build or modify UI — buttons, forms, dialogs, tables, or any visual element |
+
+**Workflow:** (1) Identify which doc(s) apply to your task. (2) Read them in full. (3) Only then begin writing code.
 
 ## Critical Rules (Summary)
 
