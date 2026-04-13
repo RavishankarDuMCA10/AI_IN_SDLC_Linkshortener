@@ -1,0 +1,8 @@
+[agent mode]:
+list all of the projects in my neon account
+
+[ask mode]:
+generate 10 example links for user id [your_user_id], use the #file:schema.ts for the correct structure
+
+[agent mode]:
+insert the example data above into the [project_name_with_id] neon database

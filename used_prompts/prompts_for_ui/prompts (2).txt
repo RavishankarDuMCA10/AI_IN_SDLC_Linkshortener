@@ -1,0 +1,5 @@
+[Instructions Generator]
+/create-instructions everything to do with auth in this app is handled by clerk. NO OTHER AUTH METHODS SHOULD BE USED. The /dashboard page is a protected route and must require the user to be logged in to be able to access this page. If the user is logged in and trying to access the homepage, they should be redirected to the /dashboard page. sign in and sign up via clerk should always launch as a modal.
+
+[Instructions Generator]
+/create-instructions ALL UI elements in this app use shadcn ui. DO NOT create any custom components, ALWAYS use shadcn ui components.

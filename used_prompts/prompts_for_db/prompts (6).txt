@@ -1,0 +1,2 @@
+[agent mode]:
+implement the edit and delete link functionality for each link list item. the edit link should be done via a modal / dialog and the delete link should first launch a dialog to confirm to the user whether they want to delete this link or not #file:page.tsx

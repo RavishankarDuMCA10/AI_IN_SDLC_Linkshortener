@@ -1,0 +1,20 @@
+[plan mode]:
+Plan a very simple table schema to store shortened links
+
+[plan mode]:
+We don't want any optional fields, we need a createdAt, updatedAt, clerk user id, short code, and url to store. All dates must store the timezone data. We do not need any click tracking and deletes will be permanent i.e. NO soft deletes.
+
+[agent mode]:
+Start Implementation
+
+[ask mode]:
+is serial the best type to save an id as in the latest version of postgres?
+
+[ask mode]:
+what about generated always as identity?
+
+[ask mode]:
+how to push this schema to our postgres db hosted on neon?
+
+[terminal]:
+npx drizzle-kit push

@@ -1,0 +1,2 @@
+[background mode]:
+Remove the learn more button from the #file:page.tsx

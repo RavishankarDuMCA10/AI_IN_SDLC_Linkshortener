@@ -1,0 +1,2 @@
+[agent mode]:
+implement the redirect functionality for each link via an api route handler. whenever the route handler at //[shortcode] is accessed it should redirect the user to the full url.

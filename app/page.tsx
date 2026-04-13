@@ -39,7 +39,7 @@ const features = [
     icon: Link2,
     title: 'Dashboard Control',
     description:
-      'View, copy, and delete all your links from one tidy dashboard. Stay organised without digging through emails.',
+      'View, copy, and delete all your links from one tidy dashboard. Stay organized without digging through emails.',
   },
 ]
 

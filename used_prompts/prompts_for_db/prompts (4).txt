@@ -1,0 +1,6 @@
+[Instructions Generator mode]:
+/create-copilot-instructions ALL data mutations in this app should be done via server actions. Server actions must be called from client components. Server action files MUST be named actions.ts and be colocated in the directory of the component that calls the server action. ALL data passed to server actions must have appropriate typescript types (DO NOT use the FormData typescript type). /create-copilot-instructions ALL data mutations in this app should be done via server actions. Server actions must be called from client components. Server action files MUST be named actions.ts and be colocated in the directory of the component that calls the server action. ALL data passed to server actions must have appropriate typescript types (DO NOT use the FormData typescript type). ALL data MUST be validated in server actions via zod. ALL server actions MUST first check for a logged in user before continuing with database operations. Database operations must be done via helper functions that wrap drizzle queries. These helper functions are located in the /data directory and server actions should NOT directly use drizzle queries within them.
+
+[agent mode]:
+update the #file:server-actions.instructions.md file to note that server actions shouldn't throw any errors, instead return an object with an error or success property.
+

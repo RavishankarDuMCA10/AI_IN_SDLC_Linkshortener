@@ -1,0 +1,8 @@
+[agent mode]:
+when I sign in with clerk from the homepage it doesn't automatically redirect me to the /dashboard page. I need to refresh the browser for the redirect to work.
+
+[agent mode]:
+update the #file:AGENTS.md file to mention that it's important NEVER to use middleware.ts as this is now deprecated in later version of next js (and specifically the version of next js in this project), and instead use proxy.ts.
+
+[agent mode (re-run previous prompt)]:
+when I sign in with clerk from the homepage it doesn't automatically redirect me to the /dashboard page. I need to refresh the browser for the redirect to work.

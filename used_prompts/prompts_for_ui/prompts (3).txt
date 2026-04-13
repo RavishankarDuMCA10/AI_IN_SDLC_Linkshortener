@@ -1,0 +1,14 @@
+[agent mode]
+Create a /dashboard page. DO NOT add any content or data fetching just yet, just add a Dashboard h1 tag as a placeholder.
+
+[agent mode]:
+make sure this page adheres to the auth coding standards
+
+[agent mode]:
+make sure the homepage adheres to the auth coding standards #file:authentication.md
+
+[agent mode]:
+make sure these elements adhere to the #file:ui-components.md
+
+[agent mode]:
+Update the agents.md file to make sure that it's incredibly important to ALWAYS read the relevant individual instructions files within the /docs directory BEFORE generating ANY code.

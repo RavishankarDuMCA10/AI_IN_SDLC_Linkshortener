@@ -1,0 +1,2 @@
+[agent mode]:
+build out the #file:page.tsx page, query for the currently logged in user's links and display them as a list
