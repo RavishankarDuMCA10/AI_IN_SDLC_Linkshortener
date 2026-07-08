@@ -1,3 +1,7 @@
+---
+description: Read this before implementing or modifying any UI components in the project.
+---
+
 # UI Components
 
 ## Absolute Rules
@@ -30,19 +34,19 @@ Generated files land in `components/ui/`. Do **not** move, rename, or substantia
 Import from the `@/components/ui/` alias:
 
 ```tsx
-import { Button } from '@/components/ui/button'
-import { Input }  from '@/components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 ```
 
 Always use `cn()` when adding or conditionally merging Tailwind classes on top of a shadcn component:
 
 ```tsx
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils";
 
-<Button className={cn('w-full', isLoading && 'opacity-50 cursor-not-allowed')}>
+<Button className={cn("w-full", isLoading && "opacity-50 cursor-not-allowed")}>
   Submit
-</Button>
+</Button>;
 ```
 
 ## Rules

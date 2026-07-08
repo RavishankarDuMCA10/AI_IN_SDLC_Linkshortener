@@ -1,3 +1,7 @@
+---
+description: Read this before implementing or modifying any authentication-related code in the project.
+---
+
 # Authentication
 
 ## Absolute Rules
@@ -17,21 +21,21 @@ Any user who is **not signed in** must not be able to access `/dashboard` or any
 
 ```ts
 // proxy.ts
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
-import { NextResponse } from 'next/server'
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-const isProtectedRoute = createRouteMatcher(['/dashboard(.*)'])
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedRoute(req)) await auth.protect()
-})
+  if (isProtectedRoute(req)) await auth.protect();
+});
 
 export const config = {
   matcher: [
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    '/(api|trpc)(.*)',
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    "/(api|trpc)(.*)",
   ],
-}
+};
 ```
 
 `auth.protect()` will automatically redirect unauthenticated users to Clerk's sign-in flow. Do not manually redirect to `/sign-in` — let Clerk handle it.
@@ -40,17 +44,17 @@ As a secondary guard, also check auth at the top of the `app/dashboard/layout.ts
 
 ```tsx
 // app/dashboard/layout.tsx
-import { auth } from '@clerk/nextjs/server'
-import { redirect } from 'next/navigation'
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 export default async function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const { userId } = await auth()
-  if (!userId) redirect('/')
-  return <>{children}</>
+  const { userId } = await auth();
+  if (!userId) redirect("/");
+  return <>{children}</>;
 }
 ```
 
@@ -60,30 +64,30 @@ If a user is **already signed in** and navigates to the homepage (`/`), redirect
 
 ```ts
 // proxy.ts
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
-import { NextResponse } from 'next/server'
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
-const isProtectedRoute = createRouteMatcher(['/dashboard(.*)'])
-const isHomePage = createRouteMatcher(['/'])
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
+const isHomePage = createRouteMatcher(["/"]);
 
 export default clerkMiddleware(async (auth, req) => {
-  const { userId } = await auth()
+  const { userId } = await auth();
 
   // Redirect authenticated users away from the homepage
   if (isHomePage(req) && userId) {
-    return NextResponse.redirect(new URL('/dashboard', req.url))
+    return NextResponse.redirect(new URL("/dashboard", req.url));
   }
 
   // Protect dashboard from unauthenticated users
-  if (isProtectedRoute(req)) await auth.protect()
-})
+  if (isProtectedRoute(req)) await auth.protect();
+});
 
 export const config = {
   matcher: [
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    '/(api|trpc)(.*)',
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    "/(api|trpc)(.*)",
   ],
-}
+};
 ```
 
 ## Sign In and Sign Up: Always Modal
@@ -98,9 +102,13 @@ import {
   SignUpButton,
   UserButton,
   Show,
-} from '@clerk/nextjs'
+} from "@clerk/nextjs";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body>
@@ -118,7 +126,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ClerkProvider>
       </body>
     </html>
-  )
+  );
 }
 ```
 
@@ -133,23 +141,23 @@ Do **not** create `app/sign-in/` or `app/sign-up/` route directories.
 Always `await` — Clerk v7 auth is asynchronous:
 
 ```ts
-import { auth, currentUser } from '@clerk/nextjs/server'
+import { auth, currentUser } from "@clerk/nextjs/server";
 
 // Lightweight — userId only
-const { userId } = await auth()
+const { userId } = await auth();
 
 // Full user object (additional network call)
-const user = await currentUser()
+const user = await currentUser();
 ```
 
 ### In Client Components
 
 ```tsx
-'use client'
-import { useAuth, useUser } from '@clerk/nextjs'
+"use client";
+import { useAuth, useUser } from "@clerk/nextjs";
 
-const { userId, isLoaded, isSignedIn } = useAuth()
-const { user } = useUser()
+const { userId, isLoaded, isSignedIn } = useAuth();
+const { user } = useUser();
 ```
 
 ## Scoping Data to the Authenticated User
@@ -159,16 +167,16 @@ Always filter DB queries to the `userId` from `auth()`. Never accept a `userId` 
 ```ts
 // ✅ Correct
 export async function getMyLinks() {
-  'use server'
-  const { userId } = await auth()
-  if (!userId) throw new Error('Unauthorized')
-  return db.select().from(urlLinks).where(eq(urlLinks.userId, userId))
+  "use server";
+  const { userId } = await auth();
+  if (!userId) throw new Error("Unauthorized");
+  return db.select().from(urlLinks).where(eq(urlLinks.userId, userId));
 }
 
 // ❌ Never trust userId from the client
 export async function getMyLinks(userId: string) {
-  'use server'
-  return db.select().from(urlLinks).where(eq(urlLinks.userId, userId))
+  "use server";
+  return db.select().from(urlLinks).where(eq(urlLinks.userId, userId));
 }
 ```
 

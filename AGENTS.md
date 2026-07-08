@@ -6,30 +6,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 # Agent Instructions
 
-> [!CAUTION]
-> **STOP. DO NOT WRITE A SINGLE LINE OF CODE UNTIL YOU HAVE READ THE RELEVANT `/docs` FILE(S) LISTED BELOW.**
-> Skipping this step will cause broken, incorrect, or insecure output. There are no exceptions.
-> Docs are in `docs/auth.md` and `docs/ui-components.md`.
 
-This file is the entry point for LLM coding agents working in this repository.
-
-For detailed guidelines on specific topics, refer to the modular documentation in the `/docs` directory. **Reading the relevant `.md` file(s) BEFORE generating ANY code is mandatory — not optional, not skippable.** Every topic area has a dedicated guide; use it:
-
-> **Rule:** If your task touches a topic in the table below, you MUST open and read the corresponding file in full before writing or modifying any code.
-
-> [!IMPORTANT]
-> **MANDATORY REQUIREMENT:** Reading the relevant `/docs` file(s) is not a suggestion — it is a hard prerequisite. Any agent that skips this step and generates code directly is violating these instructions. The docs exist because this project uses versions and conventions that differ from general training data. They are the single source of truth.
-
-## Docs Index
-
-> **YOU MUST READ THE RELEVANT FILE(S) BELOW BEFORE WRITING ANY CODE.** These docs contain project-specific APIs, conventions, and breaking changes that differ from general training data. Failure to read them will result in incorrect code.
-
-| Topic | File | When to read |
-|---|---|---|
-| Authentication (Clerk v7) | [docs/auth.md](docs/auth.md) | Any time you work with auth, protected routes, sign-in/sign-up UI, or user identity |
-| UI Components (shadcn/ui) | [docs/ui-components.md](docs/ui-components.md) | Any time you build or modify UI — buttons, forms, dialogs, tables, or any visual element |
-
-**Workflow:** (1) Identify which doc(s) apply to your task. (2) Read them in full. (3) Only then begin writing code.
 
 ## Critical Rules (Summary)
 
@@ -49,13 +26,13 @@ The following rules are the most likely to trip up an agent relying on outdated 
 
 7. **shadcn components live in `components/ui/`** — Add via `npx shadcn add <component>`. Do not hand-write or move them.
 
-8. **Clerk is the only auth provider** — Do not implement or suggest any other authentication method. See [docs/auth.md](docs/auth.md).
+8. **Clerk is the only auth provider** — Do not implement or suggest any other authentication method.
 
-9. **`/dashboard` is a protected route** — Unauthenticated users must be blocked at the middleware level in `proxy.ts`. See [docs/auth.md](docs/auth.md).
+9. **`/dashboard` is a protected route** — Unauthenticated users must be blocked at the middleware level in `proxy.ts`.
 
-10. **Authenticated users visiting `/` are redirected to `/dashboard`** — Handle in `proxy.ts`. See [docs/auth.md](docs/auth.md).
+10. **Authenticated users visiting `/` are redirected to `/dashboard`** — Handle in `proxy.ts`.
 
-11. **Sign in and sign up are always modals** — Use `<SignInButton mode="modal">` and `<SignUpButton mode="modal">`. Never create `/sign-in` or `/sign-up` pages. See [docs/auth.md](docs/auth.md).
+11. **Sign in and sign up are always modals** — Use `<SignInButton mode="modal">` and `<SignUpButton mode="modal">`. Never create `/sign-in` or `/sign-up` pages.
 
 ---
 
@@ -147,7 +124,7 @@ proxy.ts                        # Clerk middleware (Next.js 16)
 - Keep the `'use client'` boundary as deep as possible. Fetching data in Server Components avoids round-trip latency and keeps secrets off the client.
 - Use `Promise.all` when fetching multiple independent data sources in a Server Component to avoid sequential waterfalls.
 - Use `loading.tsx` files to stream UI progressively — wrap expensive async components in `<Suspense>`.
-- Export `unstable_instant = true` from routes that feel slow on client-side navigation (see `docs/nextjs.md`).
+- Export `unstable_instant = true` from routes that feel slow on client-side navigation.
 - Use `next/image` for all images — never raw `<img>` tags.
 
 ### Code Quality
